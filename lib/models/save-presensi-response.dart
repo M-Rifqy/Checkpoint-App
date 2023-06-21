@@ -49,7 +49,7 @@ class Data {
   });
 
   int id;
-  String userId;
+  int userId;
   String latitude;
   String longitude;
   DateTime tanggal;

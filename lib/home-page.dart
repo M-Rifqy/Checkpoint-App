@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
       'Authorization': 'Bearer ' + await _token
     };
     var response = await myHttp.get(
-        Uri.parse('https://punyawa.com/presensi/public/api/get-presensi'),
+        Uri.parse('http://10.0.2.2:8000/api/get-presensi'),
         headers: headres);
     homeResponseModel = HomeResponseModel.fromJson(json.decode(response.body));
     riwayat.clear();
@@ -49,6 +49,13 @@ class _HomePageState extends State<HomePage> {
         riwayat.add(element);
       }
     });
+  }
+
+  Future<void> _logout() async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.clear(); // Clear all stored preferences
+    // Navigate to the login screen or any other screen you want
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
@@ -154,6 +161,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _logout,
+                      child: Text("Logout"),
                     ),
                   ],
                 ),
