@@ -85,7 +85,20 @@ class _SimpanPageState extends State<SimpanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Presensi"),
+        backgroundColor: Color(0xFF5F2CED),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image(
+            image: AssetImage('assets/checkpoint.png'),
+          ),
+        ),
+        title: Text(
+          'Checkpoint',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: FutureBuilder<LocationData?>(
           future: _currenctLocation(),
@@ -129,11 +142,16 @@ class _SimpanPageState extends State<SimpanPage> {
                     height: 20,
                   ),
                   ElevatedButton(
-                      onPressed: () {
-                        savePresensi(currentLocation.latitude,
-                            currentLocation.longitude);
-                      },
-                      child: Text("Simpan Presensi"))
+                    onPressed: () {
+                      savePresensi(
+                          currentLocation.latitude, currentLocation.longitude);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Color(0xFF5F2CED)),
+                    ),
+                    child: Text("Simpan Presensi"),
+                  ),
                 ],
               ));
             } else {

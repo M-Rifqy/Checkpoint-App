@@ -61,6 +61,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF5F2CED),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image(
+            image: AssetImage('assets/checkpoint.png'),
+          ),
+        ),
+        title: Text(
+          'Checkpoint',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: _logout,
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: FutureBuilder(
           future: getData(),
           builder: (context, snapshot) {
@@ -73,6 +95,13 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      'Welcome Back',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     FutureBuilder(
                         future: _name,
                         builder: (BuildContext context,
@@ -95,7 +124,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       width: 400,
-                      decoration: BoxDecoration(color: Colors.blue[800]),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF5F2CED),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(children: [
@@ -134,7 +166,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Text("Riwayat Presensi"),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0.0, bottom: 16.0),
+                      child: Text("Riwayat Absensi"),
+                    ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: riwayat.length,
@@ -162,11 +197,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: _logout,
-                      child: Text("Logout"),
-                    ),
                   ],
                 ),
               ));
@@ -180,6 +210,7 @@ class _HomePageState extends State<HomePage> {
             setState(() {});
           });
         },
+        backgroundColor: Color(0xFF5F2CED),
         child: Icon(Icons.add),
       ),
     );
